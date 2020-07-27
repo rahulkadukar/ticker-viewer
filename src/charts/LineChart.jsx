@@ -57,18 +57,18 @@ const LineChart = React.memo(function LineChartD3 (props) {
     const svg = d3select(snode.current)
     svg.selectAll('*').remove()
     svg.attr("width", opts._innerWidth)
-        .attr("height", opts.slidingWindowHeight)
-        .attr("transform", `translate(${opts._margin.left + opts._yAxisWidth}, 0)`)
+      .attr("height", opts.slidingWindowHeight)
+      .attr("transform", `translate(${opts._margin.left + opts._yAxisWidth}, 0)`)
 
     opts._slidingSVG = svg
     updateBrush(svg)
 
     const xAxis = d3axisBottom(opts._xScaleSliding)
     svg.append('g')
-        .call(xAxis)
-        .style("font-size", "1em")
-        .attr("transform", `translate(0, ${opts.slidingWindowHeight - 30})`)
-        .style("color", `${theme === 'dark' ? 'white' : 'black'}`)
+      .call(xAxis)
+      .style("font-size", "1em")
+      .attr("transform", `translate(0, ${opts.slidingWindowHeight - 30})`)
+      .style("color", `${theme === 'dark' ? 'white' : 'black'}`)
   }
 
   function updateChartBrush() {
@@ -129,8 +129,8 @@ const LineChart = React.memo(function LineChartD3 (props) {
     }
 
     const brush = d3brushX()
-        .extent([[0,0],[opts._innerWidth, opts._innerHeight]])
-        .on("end", updateChart)
+      .extent([[0,0],[opts._innerWidth, opts._innerHeight]])
+      .on("end", updateChart)
 
     // xScale is for the length along x-axis
     const minDate = d3min(lineData.map((d) => d.k))
@@ -240,8 +240,8 @@ const LineChart = React.memo(function LineChartD3 (props) {
     opts._innerHeight = opts.heightChart
 
     const xScaleSliding = d3scaleUtc()
-        .domain(d3extent(data.map(d => new Date(`${d.k}T00:00:00`))))
-        .range([0, opts._innerWidth]).nice(d3TimeMonth)
+      .domain(d3extent(data.map(d => new Date(`${d.k}T00:00:00`))))
+      .range([0, opts._innerWidth]).nice(d3TimeMonth)
 
     opts._xScaleSliding = xScaleSliding
 
