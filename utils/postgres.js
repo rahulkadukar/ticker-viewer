@@ -1,5 +1,7 @@
 const { Pool } = require('pg')
 const { dbConnection } = require('../config/postgres.private.js')
+const NodeCache = require( "node-cache" )
+const level0 = new NodeCache({ stdTTL: 12 * 60 * 60 })
 
 const pgsql = new Pool({
   user: dbConnection.user,
@@ -24,3 +26,4 @@ async function sqlQuery(query) {
 }
 
 exports.sqlQuery = sqlQuery
+exports.level0 = level0

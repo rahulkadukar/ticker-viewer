@@ -5,7 +5,7 @@ const fs = require('fs')
 const path = require('path')
 const logPath = './logs'
 const logger = require('./utils/logger')
-const { sqlQuery } = require('./utils/postgres')
+const { level0, sqlQuery } = require('./utils/postgres')
 
 if (!(fs.existsSync(logPath))) {
   try {
@@ -37,25 +37,34 @@ app.use(express.static(path.join(__dirname, '/public')))
 
 // Handle the API calls
 app.post('/api/stockInfo', async (req, res) => {
+  const formatProcessTime = (t) => Math.ceil((t[0] * 1e9 + t[1]) / 1e6)
   const beginTime = process.hrtime()
   const t = (req.body && req.body.ticker ? req.body.ticker : 'AMD')
 
-  const data = await sqlQuery(`SELECT * FROM "stockData".stockinfo WHERE ticker = '${t}' ORDER BY date ASC`)
-  if (data.returnCode === 0) {
-    const stockData = data.dbResult.map((r) => {
-      return {
-        k: new Date(r.date).toISOString().slice(0,10),
-        v: parseFloat(r.high).toFixed(2)
-      }
-    })
-
-    const formatProcessTime = (t) => Math.ceil((t[0] * 1e9 + t[1]) / 1e6)
+  const cData = await level0.get(t)
+  if (cData) {
     const totalTime = formatProcessTime(process.hrtime(beginTime))
-
     res.json({
-      data: stockData,
+      data: JSON.parse(cData),
       totalTime,
     })
+  } else {
+    const data = await sqlQuery(`SELECT * FROM "stockData".stockinfo WHERE ticker = '${t}' ORDER BY date ASC`)
+    if (data.returnCode === 0) {
+      const stockData = data.dbResult.map((r) => {
+        return {
+          k: new Date(r.date).toISOString().slice(0, 10),
+          v: parseFloat(r.high).toFixed(2)
+        }
+      })
+
+      const totalTime = formatProcessTime(process.hrtime(beginTime))
+      level0.set(t, JSON.stringify(stockData))
+      res.json({
+        data: stockData,
+        totalTime,
+      })
+    }
   }
 })
 
