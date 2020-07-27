@@ -1,0 +1,47 @@
+{
+  "name": "react-app-skeleton",
+  "version": "1.0.0",
+  "description": "React App Skeleton",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install && webpack --mode production && node index.js",
+    "server": "node index.js",
+    "start": "webpack-dev-server --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahulkadukar/react-app-skeleton.git"
+  },
+  "author": "Rahul Kadukar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rahulkadukar/react-app-skeleton/issues"
+  },
+  "homepage": "https://github.com/rahulkadukar/react-app-skeleton#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^1.0.1",
+    "style-loader": "^0.23.1",
+    "terser-webpack-plugin": "^3.0.1",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "bunyan": "^1.8.12",
+    "bunyan-middleware": "^1.0.0",
+    "compression": "^1.7.4",
+    "react": "^16.12.0",
+    "react-charts-d3js": "0.0.1",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "styled-components": "^4.4.1"
+  }
+}

@@ -1,0 +1,9 @@
+*.iml
+*.private.js
+*.private.json
+*.swp
+.idea/
+public/dist/
+node_modules/
+logs/
+stats.json
