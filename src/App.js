@@ -77,12 +77,14 @@ const App = (props) => {
           <NavBar theme={value.theme}>
             <List>
               <Item><Link to="/">Home</Link></Item>
+              <Item><Link to="/ticker">Ticker</Link></Item>
               <Item><Link to="/about">About</Link></Item>
             </List>
             <ItemRight><Toggle callBack={(x) => {this._darkMode(x)}} /></ItemRight>
           </NavBar>
           <Switch>
             <Route exact path="/"><Index /></Route>
+            <Route exact path="/ticker"><Home /></Route>
             <Route exact path="/about"><About /></Route>
             <Route path="*"><Home /></Route>
           </Switch>

@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
-import P from '../components/P'
+import ThemeContext from "../components/ThemeContext"
+import { config as chartConfig, data } from '../charts/LineChartConfig'
+import LineChart from '../charts/LineChart'
 
 class Home extends Component {
   render() {
     return (
-      <div className="container">
-        <P>Home</P>
-      </div>
+      <ThemeContext.Consumer>
+        { (value) =>
+          <div className="container">
+            <LineChart config={chartConfig} data={data} theme={value.theme} />
+          </div>
+        }
+      </ThemeContext.Consumer>
     );
   }
 }
