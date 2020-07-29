@@ -1,6 +1,7 @@
-const path = require("path");
-const webpack = require("webpack");
-const TerserPlugin = require('terser-webpack-plugin')
+const path = require("path")
+const webpack = require("webpack")
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin
+const TerserPlugin = require("terser-webpack-plugin")
 
 module.exports = {
   entry: "./src/index.js",
@@ -22,7 +23,7 @@ module.exports = {
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
   optimization: {
-    minimize: false,
+    minimize: true,
     minimizer: [new TerserPlugin()],
   },
   output: {
@@ -30,5 +31,8 @@ module.exports = {
     publicPath: "public/dist/",
     filename: "bundle.js"
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  plugins: [
+    new BundleAnalyzerPlugin(),
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };
