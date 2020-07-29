@@ -32,7 +32,7 @@ module.exports = {
     filename: "bundle.js"
   },
   plugins: [
-    new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin({ analyzerMode: 'static' }),
     new webpack.HotModuleReplacementPlugin()
   ]
 };

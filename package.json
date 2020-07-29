@@ -4,7 +4,7 @@
   "description": "React App Skeleton",
   "main": "index.js",
   "scripts": {
-    "build": "npm install && webpack --mode production && node index.js",
+    "build": "npm install && webpack --mode production",
     "server": "node index.js",
     "start": "webpack-dev-server --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
