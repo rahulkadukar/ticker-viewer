@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import ThemeContext from '../components/ThemeContext'
-import { config } from '../charts/LineChartConfig'
-import LineChart from '../charts/LineChart'
+import { LineChart } from 'd3js-react-charts'
 import P from '../components/P'
 
 const Home = (props) => {
   const initState = {
-    "config": config,
+    "config": {},
     "data": [],
     "meta": {
       "execTime": 0
@@ -60,7 +59,7 @@ const Home = (props) => {
             onChange={e => setValue(e.target.value)}/>
           {
             data.data.length === 0 ? <div/> :
-            <LineChart config={data.config} data={data.data} theme={value.theme}/>
+            <LineChart data={data.data} theme={value.theme}/>
           }
           <P>This page was rendered in {data.meta.execTime} ms</P>
         </div>
