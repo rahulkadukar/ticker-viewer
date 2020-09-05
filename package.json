@@ -39,7 +39,7 @@
     "bunyan": "^1.8.12",
     "bunyan-middleware": "^1.0.0",
     "compression": "^1.7.4",
-    "d3js-react-charts": "0.0.1",
+    "d3js-react-charts": "0.0.5",
     "node-cache": "^5.1.2",
     "pg": "^8.3.0",
     "react": "^16.12.0",

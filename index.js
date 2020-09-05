@@ -40,6 +40,7 @@ app.post('/api/stockInfo', async (req, res) => {
   const formatProcessTime = (t) => Math.ceil((t[0] * 1e9 + t[1]) / 1e6)
   const beginTime = process.hrtime()
   const t = (req.body && req.body.ticker ? req.body.ticker : 'AMD')
+  console.log(`[TICKER]: ${t}`)
 
   const cData = await level0.get(t)
   if (cData) {
