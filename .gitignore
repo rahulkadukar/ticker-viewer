@@ -1,5 +1,5 @@
 *.iml
-*.private.js
+*.private
 *.private.json
 *.swp
 .idea/
